@@ -1,7 +1,6 @@
 package com.willgoodman.database;
 
 import java.sql.*;
-import javax.sql.*;
 import java.util.Random;
 import java.util.Date;
 import java.util.Calendar;
@@ -39,9 +38,6 @@ public class GenerateDatabase {
 			Connection dbConn = DriverManager.getConnection(DB_NAME, DB_USERNAME, DB_PASSWORD);
 
 			try {
-
-				// work on db
-				Statement stmt = dbConn.createStatement();
 
 				//@formatter:off
             
@@ -116,7 +112,7 @@ public class GenerateDatabase {
 				for (int vid = NUM_VENUES + 1; vid <= 100; vid++) {
 					int n = randomPrice.nextInt(NUM_VENUES - 1);
 					countVenues[n]++;
-					venueInsert.setString(1, VENUE_NAME[n] + Integer.toString(countVenues[n]));
+					venueInsert.setString(1, VENUE_NAME[n] + countVenues[n]);
 					venueInsert.setInt(2, randomPrice.nextInt(10000));
 					venueInsert.addBatch();
 				}
@@ -142,7 +138,7 @@ public class GenerateDatabase {
 				for (int mid = NUM_MENUS + 1; mid <= 100; mid++) {
 					int n = randomPrice.nextInt(NUM_MENUS - 1);
 					countMenus[n]++;
-					menuInsert.setString(1, MENU_DESC[n] + Integer.toString(countMenus[n]));
+					menuInsert.setString(1, MENU_DESC[n] + countMenus[n]);
 					menuInsert.setInt(2, randomPrice.nextInt(1000));
 					menuInsert.addBatch();
 				}
@@ -168,7 +164,7 @@ public class GenerateDatabase {
 				for (int eid = NUM_ENTER + 1; eid <= 100; eid++) {
 					int n = randomPrice.nextInt(NUM_ENTER - 1);
 					countEnter[n]++;
-					enterInsert.setString(1, ENTER_DESC[n] + Integer.toString(countEnter[n]));
+					enterInsert.setString(1, ENTER_DESC[n] + countEnter[n]);
 					enterInsert.setInt(2, randomPrice.nextInt(10000));
 					enterInsert.addBatch();
 				}
@@ -181,7 +177,7 @@ public class GenerateDatabase {
 						"INSERT INTO Party (name, mid, vid, eid, price, timing, numberofguests) VALUES (?, ?, ?, ?, ?, ?, ?)");
 				// explicit data
 				for (int pid = 1; pid <= NUM_PARTIES; pid++) {
-					partyInsert.setString(1, "Party" + Integer.toString(pid));
+					partyInsert.setString(1, "Party" + pid);
 					partyInsert.setInt(2, pid);
 					partyInsert.setInt(3, pid);
 					partyInsert.setInt(4, pid);
@@ -204,7 +200,7 @@ public class GenerateDatabase {
 					int eid = randomPrice.nextInt(100) + 1;
 
 					// partyInsert.setInt(1, pid);
-					partyInsert.setString(1, "Party" + Integer.toString(pid));
+					partyInsert.setString(1, "Party" + pid);
 					partyInsert.setInt(2, mid);
 					partyInsert.setInt(3, vid);
 					partyInsert.setInt(4, eid);
@@ -271,7 +267,6 @@ public class GenerateDatabase {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(year, month, day, hour, 0);
 		Date date = calendar.getTime();
-		java.sql.Timestamp tStamp = new java.sql.Timestamp(date.getTime());
-		return tStamp;
+		return new java.sql.Timestamp(date.getTime());
 	}
 }

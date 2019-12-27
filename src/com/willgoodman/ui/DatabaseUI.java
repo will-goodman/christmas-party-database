@@ -2,9 +2,7 @@ package com.willgoodman.ui;
 
 import com.willgoodman.database.DatabaseInteraction;
 
-import java.math.BigDecimal;
 import java.sql.*;
-import javax.sql.*;
 import java.util.Scanner;
 import java.util.Date;
 import java.util.Locale;
@@ -33,7 +31,7 @@ public class DatabaseUI {
 		while (!quit) {
 
 			boolean validInput = false;
-			String userInput = "";
+			String userInput;
 			int intInput = 0;
 
 			// loop until a valid user input is received
@@ -150,7 +148,7 @@ public class DatabaseUI {
 				System.out.println("Insert the quoted price:");
 				String stringPrice = INPUT.nextLine();
 	            int price = FORMATTER.parse(stringPrice.replaceAll("[£.]", "")).intValue();
-	            if (stringPrice.indexOf(".") < 0) {
+	            if (!stringPrice.contains(".")) {
 	            	price *= 100;
 	            }
 	            System.out.println(price);

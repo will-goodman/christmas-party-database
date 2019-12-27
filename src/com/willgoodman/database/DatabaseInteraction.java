@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 //actual program which works on the database
 public class DatabaseInteraction {
@@ -92,12 +90,12 @@ public class DatabaseInteraction {
 					String formattedProfit = formatCurrency(profit);
 					
 					//@formatter:off
-					report += 	"Party ID: " + Integer.toString(partyID) + "\n"
+					report += 	"Party ID: " + partyID + "\n"
 								+ "Party Name: " + partyName + "\n"
 								+ "Venue Name: " + venueName + "\n"
 								+ "Menu Description: " + menuDesc + "\n"
 								+ "Entertainment Description: " + enterDesc + "\n"
-								+ "Number of Guests: " + Integer.toString(numberOfGuests) + "\n"
+								+ "Number of Guests: " + numberOfGuests + "\n"
 								+ "Price: " + formattedPrice + "\n"
 								+ "Total cost: " + formattedExpenses + "\n"
 								+ "Net Profit: " + formattedProfit;
@@ -163,11 +161,11 @@ public class DatabaseInteraction {
 				if (foundMenu) {
 					String formattedCost = formatCurrency(menuCost);
 					//@formatter:off
-					report += 	"MenuID: " + Integer.toString(menuID) + "\n"
+					report += 	"MenuID: " + menuID + "\n"
 								+ "Description: " + menuDesc + "\n"
 								+ "Costprice: " + formattedCost + "\n"
-								+ "Total number of guests: " + Integer.toString(totalGuests) + "\n"
-								+ "Number of Parties: " + Integer.toString(numParties); 
+								+ "Total number of guests: " + totalGuests + "\n"
+								+ "Number of Parties: " + numParties;
 					//@formatter:on
 				} else {
 					report += "Menu doesn't exist";
@@ -189,7 +187,7 @@ public class DatabaseInteraction {
 	public String insertParty(int partyID, String name, int menuID, int venueID, int enterID, int price,
 			Timestamp tStamp, int numberOfGuests) {
 
-		String result = "";
+		String result;
 
 		try {
 			// connect to the database
@@ -235,7 +233,8 @@ public class DatabaseInteraction {
 	private String formatCurrency(int value) {
 		String stringValue = Integer.toString(value);
 		int decimalLocation = stringValue.length() - 2;
-		String formattedValue = CURRENCY_SYMBOL + stringValue.substring(0,decimalLocation) + "." + stringValue.substring(decimalLocation);
+		String formattedValue = CURRENCY_SYMBOL + stringValue.substring(0,decimalLocation)
+								+ "." + stringValue.substring(decimalLocation);
 		
 		return formattedValue;
 	}
