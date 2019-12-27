@@ -9,9 +9,6 @@ import java.util.Calendar;
 public class GenerateDatabase {
 
 	//constants
-	private final static String DB_NAME = "";
-	private final static String DB_USERNAME = "";
-	private final static String DB_PASSWORD = "";
 	private final static String[] VENUE_NAME = { "Cinema", "Bowling Alley", "Theatre", "Park", "Town hall", "Pub", "Restaurant",
 			"Beach", "Canal", "Hotel" };
 	private final static int[] VENUE_COST = { 100000, 50000, 200000, 10000, 50000, 10000, 10000, 0, 2000, 500000 };
@@ -35,7 +32,7 @@ public class GenerateDatabase {
 			// open connection
 			System.setProperty("jdbc.drivers", "org.postgresql.Driver");
 
-			Connection dbConn = DriverManager.getConnection(DB_NAME, DB_USERNAME, DB_PASSWORD);
+			Connection dbConn = DriverManager.getConnection(DatabaseKeys.DB_NAME, DatabaseKeys.DB_USERNAME, DatabaseKeys.DB_PASSWORD);
 
 			try {
 

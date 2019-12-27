@@ -3,3 +3,5 @@
 christmas-party-database.iml
 /.idea/
 /bin/*
+/resources/
+\src\com\willgoodman\database\DatabaseKeys.java
