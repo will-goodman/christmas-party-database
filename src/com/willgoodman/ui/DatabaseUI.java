@@ -10,21 +10,29 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-//a basic CLI to work with the DatabaseInteraction class
+
+/**
+ * A basic CLI to interact with the DatabaseInteraction class
+ * @author Will Goodman
+ */
 public class DatabaseUI {
 
-	// constants
 	private final static String INPUT_MESSAGE = "What do you wish to do?\n1: Party report, 2: Menu report, 3: Insert a new party, 4: Quit";
 	private final static Scanner INPUT = new Scanner(System.in);
 	private final DatabaseInteraction DATABASE;
 	private final static NumberFormat FORMATTER = NumberFormat.getNumberInstance(Locale.UK);
 
-	//constructor
+	/**
+	 * Constructor for the class.
+	 * @param interaction The DatabaseInteraction object to communicate with.
+	 */
 	public DatabaseUI(DatabaseInteraction interaction) {
 		DATABASE = interaction;
 	}
 
-	//actually runs the UI
+	/**
+	 * Runs the UI.
+	 */
 	public void runUI() {
 		// loop until the user wishes to quit
 		boolean quit = false;
@@ -72,7 +80,9 @@ public class DatabaseUI {
 		}
 	}
 
-	// gets a party report, given its pid
+	/**
+	 * Retrieves a party report and displays it to the user.
+	 */
 	private void getPartyReport() {
 		// take in the party ID
 		String PARTY_ID_INPUT_MSG = "Please enter the party's ID";
@@ -94,7 +104,9 @@ public class DatabaseUI {
 
 	}
 
-	// gets a menu report, given its mid
+	/**
+	 * Retrieves a menu report and displays it to the user.
+	 */
 	private void getMenuReport() {
 
 		// input the mid
@@ -115,7 +127,9 @@ public class DatabaseUI {
 		}
 	}
 
-	// inserts a new party into the database
+	/**
+	 * Inserts a new party into the database and informs the user whether the operation was successful.
+	 */
 	private void insertParty() {
 		// as we will be parsing strings to integer, we need to catch any
 		// NumberFormatExceptions

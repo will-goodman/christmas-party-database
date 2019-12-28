@@ -5,10 +5,12 @@ import java.util.Random;
 import java.util.Date;
 import java.util.Calendar;
 
-//loads made-up data into the database
+/**
+ * Loads made-up data into the database.
+ * @author Will Goodman
+ */
 public class GenerateDatabase {
 
-	//constants
 	private final static String[] VENUE_NAME = { "Cinema", "Bowling Alley", "Theatre", "Park", "Town hall", "Pub", "Restaurant",
 			"Beach", "Canal", "Hotel" };
 	private final static int[] VENUE_COST = { 100000, 50000, 200000, 10000, 50000, 10000, 10000, 0, 2000, 500000 };
@@ -27,6 +29,10 @@ public class GenerateDatabase {
 	private final static int[] PARTY_GUESTS = { 30, 35, 50, 45, 40, 20, 30, 60, 100, 85 };
 	private final static int NUM_PARTIES = PARTY_PROFITS.length;
 
+	/**
+	 * Main method which generates fake data for the database.
+	 * @param args Required parameter for Java main methods, no data actually passed here.
+	 */
 	public static void main(String[] args) {
 		try {
 			// open connection
@@ -251,7 +257,10 @@ public class GenerateDatabase {
 		} 
 	}
 
-	//makes a timestamp object for parties
+	/**
+	 * Makes a random timestamp object for parties.
+	 * @return The timestamp.
+	 */
 	private static java.sql.Timestamp randomDate() {
 		Random generateRandomNum = new Random();
 

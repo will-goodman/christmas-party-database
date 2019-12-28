@@ -7,22 +7,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-//actual program which works on the database
+
+/**
+ * Class used to interact with the database.
+ * @author Will Goodman
+ */
 public class DatabaseInteraction {
 
-	// constants
 	private final static String CURRENCY_SYMBOL = "£";
 	private final String DB_USERNAME;
 	private final String DB_PASSWORD;
 	private final String DB_NAME;
 
+	/**
+	 * Constructs a new object which will interact with a specific database.
+	 * @param dbName The name of the database to connect to.
+	 * @param dbUsername The username for database login.
+	 * @param dbPassword The password for database login.
+	 */
 	public DatabaseInteraction(String dbName, String dbUsername, String dbPassword) {
 		DB_USERNAME = dbUsername;
 		DB_PASSWORD = dbPassword;
 		DB_NAME = dbName;
 	}
 
-	// gets a on a party, given its pid
+	/**
+	 * Retrieves a report on a party.
+	 * @param partyID The ID of the party to return a report on.
+	 * @return The party report.
+	 */
 	public String getPartyReport(int partyID) {
 
 		String report = "";
@@ -105,9 +118,7 @@ public class DatabaseInteraction {
 					report += "Party doesn't exist";
 				}
 			} finally {
-				// close the database connection
 				dbConn.close();
-
 			}
 
 		} catch (SQLException e) {
@@ -117,7 +128,11 @@ public class DatabaseInteraction {
 		return report;
 	}
 
-	// gets a report on a menu, given its mid
+	/**
+	 * Retrieves a report on a menu.
+	 * @param menuID The ID of the menu to be reported.
+	 * @return The menu report.
+	 */
 	public String getMenuReport(int menuID) {
 
 		String report = "";
@@ -172,7 +187,6 @@ public class DatabaseInteraction {
 				}
 
 			} finally {
-				// close the database connection
 				dbConn.close();
 			}
 
@@ -183,7 +197,18 @@ public class DatabaseInteraction {
 		return report;
 	}
 
-	// inserts a new party into the database, given its information
+	/**
+	 * Inserts a new party into the database.
+	 * @param partyID The ID of the new party.
+	 * @param name The name of the party.
+	 * @param menuID The ID of the menu for the party.
+	 * @param venueID The ID of the venue for the party.
+	 * @param enterID The ID of the entertainment for the party.
+	 * @param price The price of the party.
+	 * @param tStamp The timestamp for the Date/Time of the start of the party.
+	 * @param numberOfGuests The number of guests attending the party.
+	 * @return Whether the new party was added or not.
+	 */
 	public String insertParty(int partyID, String name, int menuID, int venueID, int enterID, int price,
 			Timestamp tStamp, int numberOfGuests) {
 
@@ -218,7 +243,6 @@ public class DatabaseInteraction {
 				result = "Success!";
 
 			} finally {
-				// close the database connection
 				dbConn.close();
 			}
 
@@ -228,8 +252,12 @@ public class DatabaseInteraction {
 
 		return result;
 	}
-	
-	//takes the integer value stored in the database and reconverts it into a string in the correct currency format
+
+	/**
+	 * Converts an integer value from the database back into a string in the correct currency format.
+	 * @param value The integer value from the database.
+	 * @return The value converted into the correct currency format as a string.
+	 */
 	private String formatCurrency(int value) {
 		String stringValue = Integer.toString(value);
 		int decimalLocation = stringValue.length() - 2;
