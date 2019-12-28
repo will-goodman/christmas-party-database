@@ -1,0 +1,6 @@
+christmas-party-database.iml
+/.idea/
+/bin/*
+/out/
+/resources/
+\src\com\willgoodman\database\DatabaseKeys.java
