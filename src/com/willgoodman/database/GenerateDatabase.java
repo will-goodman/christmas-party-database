@@ -180,6 +180,9 @@ public class GenerateDatabase {
 						"INSERT INTO Party (name, mid, vid, eid, price, timing, numberofguests) VALUES (?, ?, ?, ?, ?, ?, ?)");
 				// explicit data
 				for (int pid = 1; pid <= NUM_PARTIES; pid++) {
+					/* add the party details to the statement
+					 * VALUES (partyID, name, menuID, venueID, enterID, price, tStamp, numberOfGuests)
+					 * */
 					partyInsert.setString(1, "Party" + pid);
 					partyInsert.setInt(2, pid);
 					partyInsert.setInt(3, pid);
@@ -198,11 +201,14 @@ public class GenerateDatabase {
 
 				// made-up data
 				for (int pid = NUM_PARTIES + 1; pid <= 1000; pid++) {
+
 					int vid = randomPrice.nextInt(100) + 1;
 					int mid = randomPrice.nextInt(100) + 1;
 					int eid = randomPrice.nextInt(100) + 1;
 
-					// partyInsert.setInt(1, pid);
+					/* add the party details to the statement
+					 * VALUES (partyID, name, menuID, venueID, enterID, price, tStamp, numberOfGuests)
+					 * */
 					partyInsert.setString(1, "Party" + pid);
 					partyInsert.setInt(2, mid);
 					partyInsert.setInt(3, vid);

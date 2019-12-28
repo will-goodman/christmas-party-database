@@ -78,6 +78,14 @@ public class DatabaseInteraction {
 				boolean foundParty = false;
 				while (allRS.next()) {
 					foundParty = true;
+					/*
+					* In database:
+					* / PartyID / Party Name / Number of Guests / Price / Venue Name / Venue Cost / Menu Desc /
+					*     1           2                3            4          5           6            7
+					*
+					* / Menu Cost / Entertainment Desc / Entertainment Cost /
+					*       8                9                    10
+					* */
 					partyName = allRS.getString(2);
 					numberOfGuests = allRS.getInt(3);
 					price = allRS.getInt(4);
@@ -224,7 +232,9 @@ public class DatabaseInteraction {
 				PreparedStatement insertParty = dbConn
 						.prepareStatement("INSERT INTO Party VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-				// add the party details to the statement
+				/* add the party details to the statement
+				* INSERT INTO Party VALUES (partyID, name, menuID, venueID, enterID, price, tStamp, numberOfGuests)
+				* */
 				insertParty.setInt(1, partyID);
 				insertParty.setString(2, name);
 				insertParty.setInt(3, menuID);

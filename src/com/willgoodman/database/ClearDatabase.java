@@ -3,13 +3,13 @@ package com.willgoodman.database;
 import java.sql.*;
 
 /**
- * Deletes all tables in the database to reset for a fresh run.
+ * Deletes all Christmas Party tables in the database to reset for a fresh run.
  * @author Will Goodman
  */
 public class ClearDatabase {
 
 	/**
-	 * The main method which deletes all the tables in the database.
+	 * The main method which deletes all the Christmas Party tables in the database.
 	 * @param args Required parameter for Java main methods, no data actually passed here.
 	 */
 	public static void main(String[] args) {
