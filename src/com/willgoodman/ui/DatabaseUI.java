@@ -54,7 +54,6 @@ public class DatabaseUI {
 				try {
 					intInput = Integer.parseInt(userInput);
 					if (intInput == 1 || intInput == 2 || intInput == 3 || intInput == 4) {
-						// userInput = "";
 						validInput = true;
 					}
 				} catch (NumberFormatException e) {
